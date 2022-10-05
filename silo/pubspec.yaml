@@ -10,10 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  flutter_bloc: ^7.3.1
+
+  lumbung_common:
+    path: ../../core-lumbung-common-2/core
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the

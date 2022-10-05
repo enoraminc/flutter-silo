@@ -1,7 +1,9 @@
 library silo;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:silo/model/silo.dart';
+
+abstract class Silo {
+  Future<SiloPrepareResponseModel> prepare(SiloPrepareRequestModel siloReq);
+  Future<SiloExecuteResponseModel> execute(SiloExecuteRequestModel siloReq);
+  Future<SiloCloseResponseModel> close(SiloCloseRequestModel siloReq);
 }
