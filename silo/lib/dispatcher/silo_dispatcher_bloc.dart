@@ -2,18 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silo/model/silo.dart';
 
-import 'package:lumbung_common/utils/log.dart';
 import 'package:silo/util/silo_selector.dart';
 
 import '../model/silo_dispatcher.dart';
 import '../silo.dart';
+import '../util/log.dart';
 
 part 'silo_dispatcher_event.dart';
 part 'silo_dispatcher_state.dart';
 
 class SiloDispatcherBloc
     extends Bloc<SiloDispatcherEvent, SiloDispatcherState> {
-  SiloDispatcherBloc() : super(SiloDispatcherInitial()) {
+  SiloSelector siloSelector;
+
+  SiloDispatcherBloc({
+    required this.siloSelector,
+  }) : super(SiloDispatcherInitial()) {
     on<DispatchSiloEvent>((event, emit) async {
       emit(DispatchSiloLoading());
 
@@ -24,7 +28,7 @@ class SiloDispatcherBloc
         "Silo Dispatcher Type : ${event.dispatcher.type}",
         method: "SiloDispatcherBloc.DispatchSiloEvent",
       );
-      Silo? silo = SiloSelector.byType(event.dispatcher.type);
+      Silo? silo = siloSelector.byType(event.dispatcher.type);
       if (silo == null) {
         emit(DispatchSiloFailed(
           message: "Silo not found for ${event.dispatcher.type} Type",

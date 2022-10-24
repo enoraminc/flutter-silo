@@ -1,3 +1,4 @@
+import 'package:example/silo_selector/silo_selector_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silo/dispatcher/silo_dispatcher_bloc.dart';
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider<SiloDispatcherBloc>(
-        create: (context) => SiloDispatcherBloc(),
+        create: (context) => SiloDispatcherBloc(
+          siloSelector: SiloSelectorImpl.instance(),
+        ),
         child: const HomeScreen(),
       ),
     );

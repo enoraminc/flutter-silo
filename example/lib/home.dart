@@ -1,10 +1,12 @@
+import 'package:example/util/silo_type_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:silo/dispatcher/silo_dispatcher_bloc.dart';
-import 'package:silo/implementation/example_use_case/example_use_case_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silo/model/silo_dispatcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
+import 'silo_implementation/example_use_case/example_use_case_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           DispatchSiloEvent(
             dispatcher: SiloDispatcherModel(
               data: data.toMap(),
-              type: SiloDispatcherModel.exampleUseCaseType,
+              type: SiloTypeUtil.exampleUseCaseType,
             ),
           ),
         );
